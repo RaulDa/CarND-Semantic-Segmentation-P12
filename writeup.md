@@ -31,21 +31,21 @@ Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/9
 
 #### 1. Does the project load the pretrained vgg model?
 
-The pretrained vgg model is loaded in the function `load_vgg`, via `load` Tensorflow function. Additionally, the `input_image` and `keep_prob` placeholders as well as the tensors `layer3_out`, `layer4_out` and `layer7_out` are extracted from the pretrained model for creating a fully convolutional network and building skip connections according to the `FCN-8s` architecture.
+The pretrained vgg model is loaded in the function `load_vgg` (line `34` of `main.py`), via `load` Tensorflow function. Additionally, the `input_image` and `keep_prob` placeholders as well as the tensors `layer3_out`, `layer4_out` and `layer7_out` are extracted from the pretrained model for creating a fully convolutional network and building skip connections according to the `FCN-8s` architecture.
 
 #### 2. Does the project learn the correct features from the images?
 
-The pretrained model extracts the features from the images with the original configuration, since the feature layers and the `1x1` convolutions are already defined in the provided network. The fully convolutional network is built in the function `layers` via application of transposed convolutions to `layer7_out` and skip connections with `layer4_out` and `layer3_out`.
+The pretrained model extracts the features from the images with the original configuration, since the feature layers and the `1x1` convolutions are already defined in the provided network. The fully convolutional network is built in the function `layers`(line `69` of `main.py`) via application of transposed convolutions to `layer7_out` and skip connections with `layer4_out` and `layer3_out`.
 
 Two transposed convolutions of `kernel_size=4` and `strides=2` are applied to `layer7_out` and one to `layer4_out` before connecting them. A transposed convolution of `kernel_size=16` and `strides=8` is applied to the result, as well as to `layer3_out`. The sum of both represents the final output tensor (logits), which has the shape of the original image and where the pixels are correctly classified thanks to a successful feature learn.
 
 #### 3. Does the project optimize the neural network?
 
-The function `optimize` implements the optimization operations and calculates the loss. An adam optimizer is used to minimize it and the total loss also includes the loss obtained via L2 regularization with scale of `1e-3`, applied to the last transposed convolution.
+The function `optimize` (line `97` of `main.py`) implements the optimization operations and calculates the loss. An adam optimizer is used to minimize it and the total loss also includes the loss obtained via L2 regularization with scale of `1e-3`, applied to the last transposed convolution.
 
 #### 4. Does the project train the neural network?
 
-The function `train_nn` performs the training. The training tensor defined in the `optimize` function is evaluated, as well as the loss one. The evaluation is done for `epochs=15` and taking `batch_size=20`. A `keep_prob` of `0.5` is defined for the dropout layers of the vgg, as well as a `learning_rate` of `0.00075`. The loss is monitored while the training is performed.
+The function `train_nn` (line `120` of `main.py`) performs the training. The training tensor defined in the `optimize` function is evaluated, as well as the loss one. The evaluation is done for `epochs=15` and taking `batch_size=20`. A `keep_prob` of `0.5` is defined for the dropout layers of the vgg, as well as a `learning_rate` of `0.00075`. The loss is monitored while the training is performed.
 
 ### Neural network training
 
