@@ -84,6 +84,4 @@ Most pixels are labeled close to the best solutions. The following image is an e
 
 ![alt text][image1]
 
-Additionally the logits were applied to a random video (`project_video.mp4`). The result is shown in the following link (click on image):
-
-[![Alt text for your video](https://i.ytimg.com/vi/5nY5wKeFI98/hqdefault.jpg?sqp=-oaymwEZCNACELwBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBR9UpzzHVJjRvFQvwUOtv8E6dIXA)](https://www.youtube.com/watch?v=5nY5wKeFI98)
+Additionally the logits were applied to a random video (`project_video.mp4`). The result is shown in the following [video](https://www.youtube.com/watch?v=5nY5wKeFI98).
